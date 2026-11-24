@@ -1,0 +1,8 @@
+from rest_framework.permissions import BasePermission
+
+class IsAdminOrSuperuser(BasePermission):
+    """
+    Allows access only to admin or superuser users.
+    """
+    def has_permission(self, request, view):
+        return bool(request.user and (request.user.role=="admin" or request.user.is_superuser))
